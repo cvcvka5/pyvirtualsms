@@ -39,8 +39,8 @@ dist = GSMDistributor(Provider.SMS24ME)
 
 phone = dist.get_random_number()
 print("Using number:", phone)
-# Fetch messages from page 1
 
+# Fetch messages from page 1
 messages = dist.get_messages(phone, page=1)
 for msg in messages:
     print(msg["sender"], ":", msg["text"])
