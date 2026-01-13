@@ -1,0 +1,30 @@
+[project]
+name = "pyvirtualsms"
+version = "0.1.0"
+description = "A lightweight Python library for scraping temporary SMS inboxes from multiple providers."
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Ulus" }
+]
+requires-python = ">=3.8"
+dependencies = [
+    "requests",
+    "selectolax"
+]
+
+[project.urls]
+Homepage = "https://github.com/cvcvka5/pyvirtualsms"
+Source = "https://github.com/cvcvka5/pyvirtualsms"
+Issues = "https://github.com/cvcvka5/pyvirtualsms/issues"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+where = ["."]
+

@@ -1,5 +1,5 @@
-from src.distributor import GSMDistributor
-from src.models import Provider
+from pyvirtualsms.distributor import GSMDistributor
+from pyvirtualsms.models import Provider
 
 if __name__ == "__main__":
     dist = GSMDistributor(Provider.SMS24ME)
