@@ -35,15 +35,15 @@ pip install -e .
 from pyvirtualsms import GSMDistributor, Provider
 
 dist = GSMDistributor(Provider.SMS24ME)
-Get a random number from a random country
+# Get a random number from a random country
 
 phone = dist.get_random_number()
 print("Using number:", phone)
-Fetch messages from page 1
+# Fetch messages from page 1
 
 messages = dist.get_messages(phone, page=1)
 for msg in messages:
-print(msg["sender"], ":", msg["text"])
+    print(msg["sender"], ":", msg["text"])
 ```
 
 ## Basic usage
@@ -63,7 +63,7 @@ country = countries[0]
 numbers = dist.get_numbers(country=country)
 
 for num in numbers:
-print(num["number"], "-", num["url"])
+    print(num["number"], "-", num["url"])
 ```
 
 ### Fetch messages for a number
@@ -73,7 +73,7 @@ phone = dist.get_random_number()
 messages = dist.get_messages(phone, page=1)
 
 for msg in messages:
-print(f"[{msg['sender']}] {msg['text']}")
+    print(f"[{msg['sender']}] {msg['text']}")
 ```
 
 ## Project structure
