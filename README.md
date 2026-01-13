@@ -1,5 +1,5 @@
 <p align="center">
-<img src="/assets/banner.jpg" alt="pyvirtualsms banner">
+<img src="/assets/banner.jpg">
 </p>
 
 # pyvirtualsms
