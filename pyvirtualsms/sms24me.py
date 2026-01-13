@@ -28,8 +28,17 @@ class SMS24MeProvider(SMSProvider):
 
     def fetch_numbers(self, country: Optional[Country] = None) -> List[Phone]:
         if not country:
-            country = random.choice(self.fetch_countries())
-
+            numbers: List[Phone]= []
+            for country in self.fetch_countries():
+                res = human_get(country["url"])
+                tree = Parser(res.text)
+                for node in tree.css("div.col-sm-12 > a.callout.m-2"):
+                    numbers.append({
+                        "number": node.css_first("div.text-primary").text(strip=True),
+                        "url": self.BASE + node.attributes["href"]
+                    })
+            return numbers
+        
         res = human_get(country["url"])
         tree = Parser(res.text)
 
