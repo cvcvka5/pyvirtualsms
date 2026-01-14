@@ -1,5 +1,5 @@
 <p align="center">
-<img src="/assets/banner.jpg">
+    <img src="/assets/banner.jpg">
 </p>
 
 # pyvirtualsms
@@ -16,6 +16,7 @@ This started as a personal tool for automating SMS verification flows during scr
 - Randomized headers to mimic basic browser behavior
 - Structured responses for countries, numbers, and messages
 - Only depends on requests and selectolax
+- Improved error handling and response normalization
 
 ## Installation
 
@@ -35,6 +36,7 @@ pip install -e .
 from pyvirtualsms import GSMDistributor, Provider
 
 dist = GSMDistributor(Provider.SMS24ME)
+# or use 'Provider.RECEIVESMSS'
 
 # Get a random number from a random country
 phone = dist.get_random_number()
@@ -53,7 +55,7 @@ for msg in messages:
 ```python
 countries = dist.get_countries()
 for country in countries:
-print(country["name"], "-", country["url"])
+    print(country["name"], "-", country["url"])
 ```
 
 ### Get numbers for a specific country
@@ -81,11 +83,14 @@ for msg in messages:
 ```text
 pyvirtualsms/
 │
-├── client.py                    # HTTP utilities and headers
-├── models.py                    # TypedDicts and enums
-├── provider_base.py   # Abstract provider interface
-├── sms24me.py                  # SMS24.me  implementation
-└── distributor.py          # High-level public API
+├── client.py                 # HTTP utilities and headers
+├── models.py                 # TypedDicts and enums
+├── distributor.py            # High-level public API
+│
+└── providers/
+    ├── provider_base.py      # Abstract provider interface
+    ├── sms24me.py            # 'sms24.me' implementation
+    └── receivesms.py         # 'receive-smss.com' implementation
 ```
 
 ## Why this exists
