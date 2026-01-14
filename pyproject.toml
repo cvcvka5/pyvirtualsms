@@ -1,6 +1,6 @@
 [project]
 name = "pyvirtualsms"
-version = "0.1.1"
+version = "0.2.1"
 description = "A lightweight Python library for scraping temporary SMS inboxes from multiple providers."
 readme = "README.md"
 license = { file = "LICENSE" }
