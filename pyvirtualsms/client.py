@@ -74,7 +74,7 @@ def human_get(url: str) -> requests.Response:
     """
     try:
         # Perform the request with realistic headers and a sane timeout.
-        resp = requests.get(url, headers=build_human_headers(), timeout=10)
+        resp = requests.get(url, headers=build_human_headers(), timeout=20)
         resp.raise_for_status()
         return resp
     except requests.RequestException as e:
