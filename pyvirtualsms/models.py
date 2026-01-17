@@ -21,6 +21,7 @@ class Provider(Enum):
 
     SMS24ME = "https://sms24.me"
     RECEIVESMSS = "https://receive-smss.com"
+    FREEPHONENUM = "https://freephonenum.com"
 
 
 class Country(TypedDict):

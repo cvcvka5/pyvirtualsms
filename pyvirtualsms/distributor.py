@@ -17,7 +17,7 @@ from typing import Optional, List, Union
 from .models import Provider, Country, Phone, Message
 from .providers.sms24me import SMS24MeProvider
 from .providers.receivesmss import ReceiveSMSSProvider
-
+from .providers.freephonenum import FreePhoneNumProvider
 
 class GSMDistributor:
     """
@@ -45,6 +45,8 @@ class GSMDistributor:
                 self.provider = SMS24MeProvider()
             case Provider.RECEIVESMSS:
                 self.provider = ReceiveSMSSProvider()
+            case Provider.FREEPHONENUM:
+                self.provider = FreePhoneNumProvider()
             case _:
                 raise ValueError(f"Unsupported provider: {provider}")
 

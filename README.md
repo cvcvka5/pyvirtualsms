@@ -37,6 +37,7 @@ from pyvirtualsms import GSMDistributor, Provider
 
 dist = GSMDistributor(Provider.SMS24ME)
 # or use 'Provider.RECEIVESMSS'
+# or use 'Provider.FREEPHONENUM'
 
 # Get a random number from a random country
 phone = dist.get_random_number()
@@ -90,7 +91,10 @@ pyvirtualsms/
 └── providers/
     ├── provider_base.py      # Abstract provider interface
     ├── sms24me.py            # 'sms24.me' implementation
-    └── receivesms.py         # 'receive-smss.com' implementation
+    ├── receivesms.py         # 'receive-smss.com' implementation
+    └── freephonenum.py       # 'freephonenum.com' implementation
+
+
 ```
 
 ## Why this exists
