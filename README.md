@@ -18,6 +18,11 @@ This started as a personal tool for automating SMS verification flows during scr
 - Only depends on requests and selectolax
 - Improved error handling and response normalization
 
+## Providers
+1. [Provider.SMS24ME](https://sms24.me) 
+2. [Provider.RECEIVESMSS](https://receive-smss.com)
+3. [Provider.FREEPHONENUM](https://freephonenum.com)
+
 ## Installation
 
 ```bash
@@ -108,3 +113,4 @@ Open an issue or PR if you'd like to add a provider, fix a bug, or improve parsi
 ## License
 
 MIT License.
+
