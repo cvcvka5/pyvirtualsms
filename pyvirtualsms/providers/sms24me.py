@@ -93,26 +93,14 @@ class SMS24MeProvider(SMSProvider):
                         f"in provider '{self.BASE}'."
                     )
 
-        # If no country provided, SMS24Me only returns numbers for the first country
+        # If no country provided, SMS24Me returns numbers for all of the countries
         else:
             numbers: List[Phone] = []
             for country in self.fetch_countries():
-                res = human_get(country["url"])
-                tree = Parser(res.text)
+                numbers.extend(self.fetch_numbers(country))
 
-                for node in tree.css("div.col-sm-12 > a.callout.m-2"):
-                    numbers.append(
-                        {
-                            "number": node.css_first("div.text-primary").text(
-                                strip=True
-                            ),
-                            "url": self.BASE + node.attributes["href"],
-                            "country": country,
-                        }
-                    )
-
-                # Provider only lists numbers for the first country on this path
-                return numbers
+            # Provider lists all numbers
+            return numbers
 
         # Fetch numbers for the resolved country
         res = human_get(country["url"])

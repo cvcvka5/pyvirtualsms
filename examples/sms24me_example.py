@@ -14,6 +14,9 @@ dist = GSMDistributor(Provider.SMS24ME)
 countries = dist.get_countries()
 print("Available countries:", countries)
 
+# Fetch all numbers
+print("Numbers:", dist.get_numbers())
+
 # Select a random phone number.
 phone = dist.get_random_number()
 print("Selected number:", phone)
