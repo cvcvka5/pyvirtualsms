@@ -17,6 +17,7 @@ This started as a personal tool for automating SMS verification flows during scr
 - Structured responses for countries, numbers, and messages
 - Only depends on requests and selectolax
 - Improved error handling and response normalization
+- Easy to use '.wait_for_message' method with a timeout and interval
 
 ## Providers
 1. [Provider.SMS24ME](https://sms24.me) 
