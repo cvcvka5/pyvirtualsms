@@ -47,7 +47,7 @@ class SMS24MeProvider(SMSProvider):
                 "name": node.text(strip=True).lower(),
                 "url": self.BASE + node.attributes["href"],
             }
-            for node in tree.css("div.container.mb-3 a.callout")
+            for node in tree.css("div.container a.callout")
         ]
 
     # ------------------------------------------------------------------

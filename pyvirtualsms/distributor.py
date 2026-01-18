@@ -13,6 +13,7 @@ Responsibilities:
 import inspect
 import random
 from typing import Optional, List, Union
+import time
 
 from .models import Provider, Country, Phone, Message
 from .providers.sms24me import SMS24MeProvider
@@ -156,6 +157,20 @@ class GSMDistributor:
         else:
             # Provider supports pagination, pass the page argument through.
             return self.provider.fetch_messages(phone, page)
+
+    def wait_for_message(self, phone: Phone, timeout: int = 120, interval: int = 3) -> Union[Message, None]:
+        end_time = time.monotonic()+timeout
+        last_message = self.get_messages(phone)[-1]
+        while time.monotonic() < end_time:
+            message = self.get_messages(phone)[-1]
+
+            if last_message != message:
+                return message
+
+            time.sleep(interval)
+        
+        return None
+
 
     def __repr__(self) -> str:
         """
