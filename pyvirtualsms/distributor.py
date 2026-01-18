@@ -158,20 +158,64 @@ class GSMDistributor:
             # Provider supports pagination, pass the page argument through.
             return self.provider.fetch_messages(phone, page)
 
-    def wait_for_message(self, phone: Phone, timeout: int = 120, interval: int = 3) -> Union[Message, None]:
-        end_time = time.monotonic()+timeout
-        last_message = self.get_messages(phone)[-1]
+    def wait_for_message(
+        self,
+        phone: Phone,
+        sender_contains: Optional[str] = None,
+        timeout: int = 120,
+        interval: int = 25,
+    ) -> Union[Message, None]:
+        """
+        Poll messages for a phone until a new message arrives or timeout expires.
+
+        This method repeatedly fetches the latest messages for the given phone
+        and compares the most recent message against the previously seen one.
+        If a new message is detected, it is returned immediately.
+
+        Optionally, the message sender can be filtered using a substring match.
+
+        Parameters
+        ----------
+        phone : Phone
+            The phone entry to monitor for incoming messages.
+        sender_contains : str | None, optional
+            If provided, only return messages whose sender field contains
+            this substring. If None, any new message is accepted.
+        timeout : int, optional
+            Maximum number of seconds to wait for a new message before giving up.
+        interval : int, optional
+            Number of seconds to wait between polling attempts.
+
+        Returns
+        -------
+        Message | None
+            The newly received message if one arrives within the timeout,
+            otherwise None.
+        """
+        end_time = time.monotonic() + timeout
+
+        # Capture the initial latest message to detect changes.
+        last_message = self.get_messages(phone)[0]
+
         while time.monotonic() < end_time:
-            message = self.get_messages(phone)[-1]
+            message = self.get_messages(phone)[0]
 
+            print(message)
+
+            # A new message is detected if it differs from the last seen one.
             if last_message != message:
-                return message
+                if sender_contains is not None:
+                    if sender_contains in message["sender"]:
+                        return message
+                else:
+                    return message
 
+            last_message = message
             time.sleep(interval)
-        
+
         return None
 
-
+    
     def __repr__(self) -> str:
         """
         Return a concise string representation of this distributor.
